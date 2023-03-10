@@ -17,6 +17,7 @@ enum MediaType {
   SLIDES
 }
 
+
 model Account {
   id                 String  @id @default(cuid())
   userId             String  @map("user_id")
@@ -65,7 +66,6 @@ model Media {
   audience  String[]
   type      MediaType 
 }
-
 
 model User {
   id            String    @id @default(cuid())
