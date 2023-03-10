@@ -1,0 +1,39 @@
+// schema.prisma
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum MediaType {
+  TEXT 
+  AUDIO
+  IMAGE 
+  VIDEO
+  SLIDES
+}
+
+model Media {
+  id        String     @default(cuid()) @id
+  title     String
+  content   String?
+  author    User?   @relation(fields: [authorId], references: [id])
+  authorId  String?
+  tags      String[]
+  audience  String[]
+  type      MediaType 
+}
+
+model User {
+  id            String       @default(cuid()) @id
+  name          String?
+  email         String?   @unique
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  media         Media[]
+  @@map(name: "users")
+}
