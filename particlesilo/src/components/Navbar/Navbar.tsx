@@ -32,7 +32,7 @@ export default function Navbar(){
     ]
     return <div className="min-w-screen h-24 flex space-x-8 justify-end ">
         {
-            items?.map(item => item.type === "TEXT" ? <NavbarItem title={item.title} route={item.route} /> : <Button title={item.title} link={item.route} fill={item.type === "FILLBUTTON"} />)
+            items?.map(item => item.type === "TEXT" ? <NavbarItem title={item.title} route={item.route} key={item.title} /> : <Button title={item.title} link={item.route} fill={item.type === "FILLBUTTON"} key={item.title} />)
         }
     </div>
 }
